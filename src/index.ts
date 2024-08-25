@@ -4,6 +4,7 @@ import rootRouter from "./routes";
 import cors from "cors";
 import session from "express-session";
 import todosRouter from "./routes/todo";
+import todosRootRouter from "./routes/todoindex";
 const app: Express = express();
 
 app.use(
@@ -25,7 +26,7 @@ app.get("/", (req, res) => {
 
 
 app.use("/api", rootRouter);
-app.use('/api/todos', todosRouter);
+app.use('/api', todosRootRouter);
 
 app.listen(5000, () => {
     console.log("server running");

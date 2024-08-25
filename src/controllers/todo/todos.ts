@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import prisma from "../../db/prisma";
 
-
 // Get all todos for a user
 export const fetchTodo = async (req: Request, res: Response) => {
-    const { userid } = req.body;
+    const { id: userid } = req.params;
+    console.log(userid)
     if (!userid) {
         return res.status(400).json({ error: "User ID is required" });
     }
@@ -20,7 +20,7 @@ export const fetchTodo = async (req: Request, res: Response) => {
 };
 
 // Create a new todo
-export const createTodo =  async (req: Request, res: Response) => {
+export const createTodo = async (req: Request, res: Response) => {
     const { userid, title, description } = req.body;
     if (!userid) {
         return res.status(400).json({ error: "User ID is required" });
@@ -73,10 +73,10 @@ export const updateTodo = async (req: Request, res: Response) => {
     } catch (error) {
         res.status(500).json({ error: "Error updating todo" });
     }
-}
+};
 
 // Delete a todo
-export const deleteTodo =  async (req: Request, res: Response) => {
+export const deleteTodo = async (req: Request, res: Response) => {
     const { userid, id } = req.body;
     if (!userid) {
         return res.status(400).json({ error: "User ID is required" });
@@ -103,5 +103,4 @@ export const deleteTodo =  async (req: Request, res: Response) => {
     } catch (error) {
         res.status(500).json({ error: "Error deleting todo" });
     }
-}
-
+};
