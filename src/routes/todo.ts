@@ -1,10 +1,11 @@
-// import express from 'express'
+import express from "express";
+import { createTodo, deleteTodo, fetchTodo, updateTodo } from "../controllers/todo/todos";
 
-// const router = express.Router()
+const todosRouter = express.Router();
 
-// router.get('/api/products', getTodo)
-// router.post('/products', createTodo)
-// router.patch('/products/:id', updateTodo)
-// router.delete('/products/:id', deleteTodo)
+todosRouter.get("/fetch-todos/", fetchTodo);
+todosRouter.post("/create-todo", createTodo);
+todosRouter.delete("/delete-todo/", deleteTodo);
+todosRouter.put("/update-todo", updateTodo);
 
-// export default router
+export default todosRouter;

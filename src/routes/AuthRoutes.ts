@@ -6,9 +6,8 @@ import { checkAuth } from "../controllers/auth/check-auth";
 
 const authRoutes:Router = express.Router();
 
-authRoutes.get("/register", register);
+authRoutes.post("/register", register);
 authRoutes.post("/login", login);
-authRoutes.patch("/logout", logout);
 authRoutes.patch("/logout", logout);
 authRoutes.get("/check-auth", checkAuth);
 

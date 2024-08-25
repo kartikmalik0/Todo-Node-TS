@@ -1,9 +1,9 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 
 import prisma from "../../db/prisma";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 
-export const login = async (req:Request,res:Response) => {
+export const login = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
     try {
@@ -18,8 +18,7 @@ export const login = async (req:Request,res:Response) => {
         }
 
         // Set user session
-        req.session.userId = user.id;
-
+        // res.set("Set-Cookie", `userId=`${user.id}`)
         res.json({ message: "Login successful", userId: user.id });
     } catch (error) {
         res.status(500).json({ error: "Error logging in" });

@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 
 export const register = async (req: Request, res: Response) => {
     const { email, password } = req.body;
+    console.log(email, password);
 
     try {
         const existingUser = await prisma.user.findUnique({ where: { email } });
@@ -12,7 +13,6 @@ export const register = async (req: Request, res: Response) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-
         const newUser = await prisma.user.create({
             data: {
                 email,
@@ -21,7 +21,7 @@ export const register = async (req: Request, res: Response) => {
         });
 
         if (req.session) {
-            req.session.id = newUser.id;
+            req.session.userId = newUser.id;
         }
 
         res.status(201).json({
