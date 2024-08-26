@@ -21,7 +21,6 @@ export const fetchTodo = async (req: Request, res: Response) => {
 // Create a new todo
 export const createTodo = async (req: Request, res: Response) => {
     const { userid, title, description } = req.body;
-    console.log(description)
     if (!userid) {
         return res.status(400).json({ error: "User ID is required" });
     }
