@@ -9,7 +9,7 @@ const app: Express = express();
 
 app.use(
     cors({
-        origin: "http://localhost:3001", // Replace with your frontend URL
+        origin: "*", // Replace with your frontend URL
         credentials: true,
     })
 );
@@ -22,11 +22,8 @@ app.get("/", (req, res) => {
     res.send("working");
 });
 
-
-
-
 app.use("/api", rootRouter);
-app.use('/api', todosRootRouter);
+app.use("/api", todosRootRouter);
 
 app.listen(5000, () => {
     console.log("server running");

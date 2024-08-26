@@ -4,7 +4,6 @@ import prisma from "../../db/prisma";
 // Get all todos for a user
 export const fetchTodo = async (req: Request, res: Response) => {
     const { id: userid } = req.params;
-    console.log(userid)
     if (!userid) {
         return res.status(400).json({ error: "User ID is required" });
     }
@@ -22,6 +21,7 @@ export const fetchTodo = async (req: Request, res: Response) => {
 // Create a new todo
 export const createTodo = async (req: Request, res: Response) => {
     const { userid, title, description } = req.body;
+    console.log(description)
     if (!userid) {
         return res.status(400).json({ error: "User ID is required" });
     }
@@ -42,7 +42,7 @@ export const createTodo = async (req: Request, res: Response) => {
 
 // Update a todo
 export const updateTodo = async (req: Request, res: Response) => {
-    const { userid, id, title, description, completed } = req.body;
+    const { userid, id, title, description } = req.body;
     if (!userid) {
         return res.status(400).json({ error: "User ID is required" });
     }
@@ -59,7 +59,6 @@ export const updateTodo = async (req: Request, res: Response) => {
             data: {
                 title,
                 description,
-                completed,
             },
         });
 
